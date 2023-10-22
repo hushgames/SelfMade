@@ -4,7 +4,6 @@ import java.lang.Thread;
 import java.util.InputMismatchException;
 
 public class Schedule {
-    public static String[] daysWeek = {"SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"};
     static ArrayList<Store> actList = new ArrayList<>();
     private static String username , password;
 
@@ -13,10 +12,7 @@ public class Schedule {
         System.out.print("\033[H\033[2J");
         System.out.flush();
 
-        Schedule s = new Schedule();
-        User user = new User();
-        s.login(input);
-
+        Schedule.login(input);
         while (true) {
             System.out.println("\n[1] Add Activities\n[2] Remove Activities\n[3] Display Activities\n[4] Exit");
             System.out.print("Choice: ");
@@ -24,15 +20,17 @@ public class Schedule {
             input.nextLine();
             switch (choice) {
                 case 1:
-                    user.getActivities(actList, input);
+                    User.getActivities(actList, input);
                     break;
                 case 2:
+                    User.displayActivities(actList);
+                    User.removeActivities(actList, input);
                     break;
                 case 3:
-                    user.displayActivities(actList);
+                    User.displayActivities(actList);
                     break;
                 case 4:
-                    s.logout();
+                    Schedule.logout();
                     break;
                 default:
                     System.out.println("Invalid Input. Select 1, 2, 3, or 4 only.");
@@ -41,7 +39,7 @@ public class Schedule {
         }
     }
 
-    public void login(Scanner input) throws InterruptedException{ // User Log in method
+    public static void login(Scanner input) throws InterruptedException{ // User Log in method
         System.out.println("Welcome to Schedule App!");
         System.out.print("Username: ");
         username = input.nextLine();
@@ -84,7 +82,7 @@ public class Schedule {
         System.out.println("\nWelcome " + username + ", what do you want to do today?");
     }
 
-    public void logout() throws InterruptedException{ // User Log out Method
+    public static void logout() throws InterruptedException{ // User Log out Method
         for (int i = 3; i >= 1; i--) {
             System.out.print("Exiting in: ");
             System.out.println(i);
@@ -98,11 +96,11 @@ public class Schedule {
 }
 
 class User { // user class 
-    public String actName;
-    public String month;
-    public int day;
+    public static String actName;
+    public static String month;
+    public static int day;
 
-    public void getActivities(ArrayList<Store> actList, Scanner input) { // Method to get activites inputs
+    public static void getActivities(ArrayList<Store> actList, Scanner input) { // Method to get activites inputs
         System.out.print("\033[H\033[2J");
         System.out.flush();
 
@@ -118,7 +116,7 @@ class User { // user class
                     System.out.print("Number: ");
                     day = input.nextInt();
                     if (day > 31 || day <= 0)
-                        System.out.println("Invalid Numberr.");
+                        System.out.println("Invalid Number.");
                 } while(day <= 0);
             } catch (InputMismatchException e) {
                 System.out.println("Invalid Number.");
@@ -133,20 +131,25 @@ class User { // user class
         System.out.flush();
     }
 
-    public void displayActivities(ArrayList<Store> actList) { // method to display the activities
+    public static void displayActivities(ArrayList<Store> actList) { // method to display the activities
         System.out.print("\033[H\033[2J");
         System.out.flush();
-        // if (actList.get(0).month.toUpperCase().equals("SUNDAY"))
-        //     System.out.println(actList.get(0).month);
 
         System.out.println("<<<<<<<<<<<<< Activities >>>>>>>>>>>>>\n");
-
         System.out.println("======================================");
         for (int i = 0; i < actList.size(); i++) {
-            System.out.println("\tActivity Name: " + actList.get(i).actName);
+            System.out.println("[" + i + "]\tActivity Name: " + actList.get(i).actName);
             System.out.println("\tOn: " + actList.get(i).month + " " + actList.get(i).day);
             System.out.println("======================================");
         }
+    }
+
+    public static void removeActivities(ArrayList<Store> actList, Scanner input) { // method to remove an activity
+        System.out.print("Select an index to remove: ");
+        int del = input.nextInt();
+
+        actList.remove(del);
+        System.out.println("Activity Successfuly Removed.");
     }
 }
 
@@ -169,7 +172,7 @@ class Schedule
 login() done 
 logout() done 
 
-class User extends Schedule
+class User 
 getActivities()
 storeActivities()
 removeActivities()
