@@ -10,7 +10,9 @@ public class Schedule {
 
     public static void main(String[] args) throws InterruptedException{
         Scanner input = new Scanner(System.in);
-        
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+
         Schedule s = new Schedule();
         User user = new User();
         s.login(input);
@@ -40,6 +42,7 @@ public class Schedule {
     }
 
     public void login(Scanner input) throws InterruptedException{ // User Log in method
+        System.out.println("Welcome to Schedule App!");
         System.out.print("Username: ");
         username = input.nextLine();
 
@@ -54,16 +57,20 @@ public class Schedule {
                 System.out.println("Incorrect Password.");
                 checker++;
                 if (checker == 3) {
-                    System.out.println("\nPlease try again in: ");
+                    System.out.print("\033[H\033[2J");
+                    System.out.flush();
                     for (int i = 5; i >= 1; i--) {
+                        System.out.print("\nPlease try again in: ");
+                        System.out.print(i);
                         Thread.sleep(1000);
-                        System.out.println(i);
+                        System.out.print("\033[H\033[2J");
+                        System.out.flush();
                     }
+                if (checker == 3)
+                    System.out.println("Username: " + username);
                     checker = 0;
                 }
-            }
-            
-            
+            }    
         } while(invalid);
 
         System.out.print("Loging in");
@@ -71,15 +78,19 @@ public class Schedule {
             Thread.sleep(800);
             System.out.print(".");
         }
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
 
         System.out.println("\nWelcome " + username + ", what do you want to do today?");
     }
 
     public void logout() throws InterruptedException{ // User Log out Method
-        System.out.println("Exiting in");
         for (int i = 3; i >= 1; i--) {
+            System.out.print("Exiting in: ");
+            System.out.println(i);
             Thread.sleep(800);
-            System.out.println(i + " ");
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
         }
         System.out.println("You have Successfully Logout your Account!");
         System.exit(0);
@@ -92,10 +103,13 @@ class User extends Schedule { // user class extends schedule
     public int day;
 
     public void getActivities(ArrayList<Store> actList, Scanner input) { // Method to get activites inputs
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+
         System.out.print("Activity Name: ");
         actName = input.nextLine();
 
-        System.out.print("Month: ");
+        System.out.print("Month Name: ");
         month = input.nextLine();
 
         do {
@@ -115,10 +129,13 @@ class User extends Schedule { // user class extends schedule
         
         Store store = new Store(actName, month, day);
         actList.add(store);
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 
     public void displayActivities(ArrayList<Store> actList) { // method to display the activities
-        
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
         // if (actList.get(0).month.toUpperCase().equals("SUNDAY"))
         //     System.out.println(actList.get(0).month);
 
