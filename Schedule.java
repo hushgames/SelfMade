@@ -97,7 +97,7 @@ public class Schedule {
     }
 }
 
-class User extends Schedule { // user class extends schedule
+class User { // user class 
     public String actName;
     public String month;
     public int day;
