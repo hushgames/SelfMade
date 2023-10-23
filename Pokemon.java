@@ -5,23 +5,29 @@ public class Pokemon {
     static int health = 1;							
     public static void main(String[] args) throws InterruptedException {								
 		Scanner input = new Scanner(System.in);
-
 		while (true) {
 			System.out.print("\033[H\033[2J");
 			System.out.flush();	
-			
-			System.out.println("==========");
+			System.out.println("      /\\   /\\");
+            System.out.println("     /  \\ /  \\"); 
             if (health == 1) {
-			    System.out.print("= 	 =");
-                System.out.println("\t\t #Health 1");
+                System.out.println("     \\\\   0   /\t\t\t _________  ");
+                System.out.println("      \\\\  -  /\t\t\t/         \\ ");
+                System.out.println("       |   |\t\t\t|  O   O  |");
+                System.out.println("       /   \\\\\t\t\t|    |    |");
+                System.out.println("      /     \\\\\t\t\t|  \\___/  |");
+                System.out.println("     /       \\\\\t\t\t \\_______/ ");
+                System.out.println("\t\t\t\t  #Health 1");
             }
             if (health <= 0) {
-                System.out.print("= 	 =");
-                System.out.println("\t\t #Dead");
+                System.out.println("     \\\\   0   /\t\t\t _________  ");
+                System.out.println("      \\\\  -  /\t\t\t/         \\ ");
+                System.out.println("       |   |\t\t\t|  X   X  |");
+                System.out.println("       /   \\\\\t\t\t|    |    |");
+                System.out.println("      /     \\\\\t\t\t|   ___   |");
+                System.out.println("     /       \\\\\t\t\t \\_______/ ");
+                System.out.println("\t\t\t\t  #Dead");
             }
-			System.out.println("=   	=");
-			System.out.println("=      =");
-			System.out.println("=======");
             
 			System.out.println("[1] Attack\n[2] Revive Enemy");
 			System.out.print("Choice: ");
@@ -42,18 +48,23 @@ public class Pokemon {
                             Thread.sleep(20);
                             System.out.print("\033[H\033[2J");										
                             System.out.flush();
-                            System.out.println("==========");
-                            System.out.print("=");
+                            System.out.println("      /\\   /\\");
+                            System.out.println("     /  \\ /  \\");
+                            System.out.println("     \\\\   0   / \t\t _________  ");
+                            System.out.println("      \\\\  -  / \t\t\t/         \\ ");
+                            System.out.print("       |   |");
                             for (int k = 0; k < j; k++){
                                 System.out.print(" ");
                             }
-                            System.out.print("     =");
+                            System.out.print("=");
                             for (int a = 18; a > j; a--) {
-                                System.out.print(" ");
+                                 System.out.print(" ");
                             }
-                            System.out.println("#Health 1");
-                            System.out.println("=       =");
-                            System.out.println("=======");
+                            System.out.println(" |  O   O  |");
+                            System.out.println("       /   \\\\\t\t\t|    |    |");
+                            System.out.println("      /     \\\\\t\t\t|  \\___/  |");
+                            System.out.println("     /       \\\\\t\t\t \\_______/ ");
+                            System.out.println("\t\t\t\t  #Health 1");
                             
                         }
                         health--;    
@@ -79,4 +90,4 @@ public class Pokemon {
 		}
         
 	}
-}
+}       
