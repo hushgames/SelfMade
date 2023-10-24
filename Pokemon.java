@@ -129,5 +129,10 @@ public class Pokemon {
                     break;
 			}
 		}
+<<<<<<< HEAD
     }
+=======
+        
+	}
+>>>>>>> 373e8a4ce46bbd06e74129e6039ec66de94fb53d
 }
