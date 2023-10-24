@@ -1,3 +1,6 @@
+// Made by: Harvey
+// Schedule SelfMade
+
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.lang.Thread;
