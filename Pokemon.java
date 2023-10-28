@@ -9,6 +9,7 @@ public class Pokemon {
     static int damage = 50;							
     static int eHealth = 200;
     static int eDamage = 50;
+    
     public static void main(String[] args) throws InterruptedException { // Main Method							
 		Scanner input = new Scanner(System.in);
         
@@ -20,6 +21,7 @@ public class Pokemon {
                     break;
 				case 1:
                     eHealthChecker(input);
+                    pHealthChecker(input);
                     playerAttack();
                     enemyAttack();
 					break;
@@ -43,7 +45,7 @@ public class Pokemon {
         System.out.println("\tBob");	
         System.out.println("      /\\   /\\");
         System.out.println("     /  \\ /  \\"); 
-        if (eHealth <= 200 && eHealth != 0) {
+        if (eHealth <= 200 && eHealth != 0 && player <= 300 && player !=0) {
             System.out.println("     \\\\   0   /\t\t\t _________  ");
             System.out.println("      \\\\  -  /\t\t\t/         \\ ");
             System.out.println("       |   |\t\t\t|  O   O  |");
@@ -59,6 +61,14 @@ public class Pokemon {
             System.out.println("      /     \\\\\t\t\t|   ___   |");
             System.out.println("     /       \\\\\t\t\t \\_______/ ");
             System.out.println("     Health " + player +"\t\t\t  Dead " + eHealth);
+        } else if (player <= 0) {
+            System.out.println("     \\\\   0   /\t\t\t _________  ");
+            System.out.println("      \\\\  -  /\t\t\t/         \\ ");
+            System.out.println("       |   |\t\t\t|  O   O  |");
+            System.out.println("       /   \\\\\t\t\t|    |    |");
+            System.out.println("      /     \\\\\t\t\t|  \\___/  |");
+            System.out.println("     /       \\\\\t\t\t \\_______/ ");
+            System.out.println("     Dead " + player +"\t\t\t Health " + eHealth);
         }
     }
 
@@ -83,6 +93,17 @@ public class Pokemon {
         System.out.print("\033[H\033[2J");										
         System.out.flush();
         System.out.println("The enemy is already dead.");
+        System.out.println("(Press Enter to Continue)");
+        input.nextLine();
+        }
+    }
+
+    public static void pHealthChecker(Scanner input) { // Player Health Checker Method
+        if (player <= 0) {
+        input.nextLine();
+        System.out.print("\033[H\033[2J");										
+        System.out.flush();
+        System.out.println("Can't Attack, The Player is Dead.");
         System.out.println("(Press Enter to Continue)");
         input.nextLine();
         }
@@ -123,6 +144,8 @@ public class Pokemon {
     
     public static void playerAttack() throws InterruptedException { // Player Attack Method
         boolean checker = true;
+        if (player <= 0)
+            checker = false;
         if (eHealth <= 0)
             checker = false;
         while (checker) {
